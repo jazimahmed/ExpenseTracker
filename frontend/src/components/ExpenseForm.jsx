@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { fetchExpensesData } from "../redux/slices/expenseSlice";
+import { toast } from 'react-toastify';
 
 
 const ExpenseForm = ({ setShowForm }) => {
@@ -49,10 +50,13 @@ const ExpenseForm = ({ setShowForm }) => {
         }
       );
 
+      toast.success("Expense added successfully!");
+
       dispatch(fetchExpensesData({})); 
       setShowForm(false);
     } catch (err) {
       console.error('Error adding expense:', err);
+      toast.error("Expense added failed.");
       setError('Failed to add expense');
     }
   };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { fetchExpensesData } from "../redux/slices/expenseSlice";
+import { toast } from 'react-toastify';
 
 
 const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
@@ -52,10 +53,12 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
           },
         }
       );
+      toast.success("Expense editted successfully!");
       dispatch(fetchExpensesData({}));
       onUpdate(res.data); // Send updated data back to parent
       setShowForm(false);
     } catch (err) {
+      toast.error("Expense editted failed.");
       console.error('Error updating expense:', err);
       setError('Failed to update expense');
     }

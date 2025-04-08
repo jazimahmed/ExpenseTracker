@@ -13,9 +13,11 @@ import ExpenseLineChart from '../components/ExpenseLineChart';
 const Dashboard = () => {
 
     
-    const { expenses, loading } = useSelector((state) => state.expenses);
+    const { expenses , loading } = useSelector((state) => state.expenses);
 
-    const chartData = expenses.map(exp => ({
+    const safeExpenses = Array.isArray(expenses) ? expenses : [];
+
+      const chartData = safeExpenses.map(exp => ({
         date: new Date(exp.createdAt).toISOString().split('T')[0],
         amount: exp.amount
       }));

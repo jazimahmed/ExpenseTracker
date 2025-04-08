@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerSuccess } from '../redux/slices/authSlice';  // Import the action from authSlice
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -28,11 +29,11 @@ const Register = () => {
       // Save token in localStorage
       localStorage.setItem('token', token);
 
-      console.log('Registration successful!');
+      toast.success('Registration successful!');
       navigate('/dashboard'); 
     } catch (error) {
       console.error('Registration failed:', error.response?.data || error.message);
-      console.log('Registration failed!');
+      toast.error('registration failed, use different username');
     }
   };
 

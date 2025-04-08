@@ -3,7 +3,8 @@ import deleteExpense from '../../utils/deleteFunc';
 import { useDispatch } from "react-redux";
 import EditExpenseForm from "./EditExpenseForm";
 import { useState } from "react";
-//import { setExpenses } from '../../redux/slices/expensesSlice'; // Assuming setExpenses is the action
+//import { setExpenses } from '../../redux/slices/expensesSlice';
+import { toast } from 'react-toastify';
 
 const ExpenseCard = ({ expense, setExpenses }) => {
     const [showForm, setShowForm] = useState(false);
@@ -20,8 +21,11 @@ const ExpenseCard = ({ expense, setExpenses }) => {
         try {
             const response = await deleteExpense(expense._id, token);
             
-            dispatch(setExpenses(response)); // Dispatch the action to update the state
+            dispatch(setExpenses(response));
+            toast.success("Expense deleted successfully!");
+
         } catch (error) {
+            toast.error("Expense deleted failed!");
             console.error('Failed to delete expense', error);
         }
     };

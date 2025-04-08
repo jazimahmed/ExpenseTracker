@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { loginSuccess } from './slices/authSlice';
+import { toast } from 'react-toastify';
 
 export const login = (credentials, navigate) => async (dispatch) => {
   try {
@@ -11,11 +12,12 @@ export const login = (credentials, navigate) => async (dispatch) => {
 
     // Optionally store the token in localStorage/sessionStorage for persistence
     localStorage.setItem('token', token);
-    console.log(token);
-    
+    //console.log(token);
+    toast.success('Login successful!');
     // Redirect to the Dashboard page after successful login
     navigate('/dashboard');  // Navigate to the Dashboard component
   } catch (error) {
+    toast.error('Invalid credentials');
     console.error('Login failed:', error.response);
   }
 };

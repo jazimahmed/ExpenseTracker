@@ -4,6 +4,8 @@ import Card from './Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setExpenses, setError } from '../redux/slices/expenseSlice'; // Import Redux actions
 import { fetchExpenses } from '../../utils/dataFetch'; // Assuming you have a utility to fetch expenses
+import { ClipLoader } from "react-spinners";
+
 
 const ExpenseList = () => {
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ const ExpenseList = () => {
   }, [dispatch, category, startDate, endDate]); // Add startDate and endDate to the dependency array
 
   if (loading) {
-    return <div>Loading...</div>;
+    return  <ClipLoader color="#3b82f6" size={50} />;
   }
 
   if (error) {
