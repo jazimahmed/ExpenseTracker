@@ -1,7 +1,7 @@
 # 💸 Expense Tracker App
 
 ![Dashboard](https://i.ibb.co/s9NZ5mrT/app-dash1.png)
-![Dashboard2](https://ibb.co/Z1kY47D5)
+![Dashboard2](https://i.ibb.co/k6W9bvCj/app-dash-2.png)
 
 
 A full-stack MERN application to manage personal expenses, with authentication, filtering, and monthly summaries.
