@@ -1,5 +1,9 @@
 # 💸 Expense Tracker App
 
+![Dashboard](https://i.ibb.co/s9NZ5mrT/app-dash1.png)
+![Dashboard2](https://ibb.co/Z1kY47D5)
+
+
 A full-stack MERN application to manage personal expenses, with authentication, filtering, and monthly summaries.
 
 ---
@@ -36,6 +40,8 @@ This project helps users to track their expenses categorized by date, category, 
 ---
 
 ## 🛠 Built With
+
+
 
 <p align="left">
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
