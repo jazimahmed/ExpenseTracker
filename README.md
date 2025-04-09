@@ -78,7 +78,7 @@ cd ExpenseTracker
 ---
 ### 🛠️ set up backend
 
-1. **Clone the repository**
+2. **backend setup**
    
 ```bash
 cd backend
@@ -99,7 +99,7 @@ JWT_SECRET=your_jwt_secret_key
 ### 🛠️ Frontend setup
 4. **Navigate to the frontend folder:**
 ```bash
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
