@@ -92,7 +92,7 @@ npm run dev
 ## 📸 Screenshots
 
 ![Dashboard Screenshot](https://i.ibb.co/k6W9bvCj/app-dash-2.png)
-![Mobile View or Second Screenshot](https://i.ibb.co/s9bkKGt0)
+![Mobile View or Second Screenshot](https://i.ibb.co/GQnBWLFK/image.png)
 
 ---
 
