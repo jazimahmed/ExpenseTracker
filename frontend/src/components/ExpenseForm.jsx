@@ -65,36 +65,36 @@ const ExpenseForm = ({ setShowForm }) => {
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-20">
 
 
-      <div className="bg-white p-6 rounded-md w-[400px]">
+      <div className="bg-white p-6 rounded-md w-[400px] dark:bg-gray-900 dark:text-white">
         <h2 className="text-xl font-semibold mb-4">Add New Expense</h2>
         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 ">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">Description</label>
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-600 dark:text-white"
               placeholder="Enter expense description"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Amount</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">Amount</label>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-600 dark:text-white"
               placeholder="Enter amount"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-600 "
             >
               <option value="">Select Category</option>
               <option value="Transport">Transport</option>
@@ -104,18 +104,18 @@ const ExpenseForm = ({ setShowForm }) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Date</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">Date</label>
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-600 "
             />
           </div>
           <div className="flex justify-between items-center mt-4">
             <button
               type="submit"
-              className="p-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+              className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 "
             >
               Add Expense
             </button>

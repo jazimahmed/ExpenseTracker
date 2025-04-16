@@ -8,12 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <>
-    <ToastContainer position="top-right" autoClose={3000} theme="colored" />
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
+    <div className="min-h-screen bg-gray-100 text-gray-900 ">
+      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
@@ -21,8 +21,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-    </Routes>
-    </>
+      </Routes>
+    </div>
   );
 }
 

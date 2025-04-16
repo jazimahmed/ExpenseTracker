@@ -66,7 +66,7 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
 
   return (
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-20">
-      <div className="bg-white p-6 rounded-md w-[400px]">
+      <div className="bg-white p-6 rounded-md w-[400px] dark:bg-gray-900 dark:text-white">
         <h2 className="text-xl font-semibold mb-4">Edit Expense</h2>
         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -76,7 +76,7 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-700 dark:text-white"
             />
           </div>
           <div>
@@ -85,7 +85,7 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-700 dark:text-white"
             />
           </div>
           <div>
@@ -93,7 +93,7 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-700 dark:text-white"
             >
               <option value="">Select Category</option>
               <option value="Transport">Transport</option>
@@ -108,7 +108,7 @@ const EditExpenseForm = ({ expense, setShowForm, onUpdate }) => {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full p-2 border rounded-md text-sm"
+              className="w-full p-2 border rounded-md text-sm dark:bg-gray-700 dark:text-white"
             />
           </div>
           <div className="flex justify-between items-center mt-4">

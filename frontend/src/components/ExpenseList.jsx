@@ -54,8 +54,8 @@ const ExpenseList = () => {
   }
 
   return (
-    <div className="bg-white rounded-md p-4 flex flex-col h-[490px]">
-      <div className="sticky top-0 z-10 bg-white">
+    <div className="bg-white rounded-md p-4 flex flex-col h-[490px] dark:bg-gray-900 dark:text-white">
+      <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 dark:text-white">
         <Card 
           category={category} 
           setCategory={setCategory} 

@@ -19,7 +19,7 @@ const ProfilePart = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 shadow-md rounded-md p-6">
+    <div className="flex flex-col items-center gap-2 shadow-md rounded-md p-6 dark:bg-gray-900 dark:text-white">
       <div className="w-12 h-12 rounded-full bg-gray-400 overflow-hidden">
         <img
           src={img}
@@ -31,7 +31,7 @@ const ProfilePart = () => {
       <div>
         <button 
           onClick={handleLogout} 
-          className="flex bg-gray-200 items-center gap-2 p-2 border rounded-md hover:bg-red-200"
+          className="flex bg-gray-200 items-center gap-2 p-2 border rounded-md hover:bg-red-200 dark:bg-purple-900 dark:text-white"
         >
           <FiLogOut size={14} />
           <span className='text-xs'>Logout</span>

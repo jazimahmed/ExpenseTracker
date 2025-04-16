@@ -9,14 +9,14 @@ const router = express.Router();
 // Add new expense
 router.post('/', protect, async (req, res) => {
     const { amount, category, description, date } = req.body;
-   console.log(req.body);
+   //console.log(req.body);
     try {
       const expense = new Expense({
         userId: req.user.id,
         amount,
         category,
         description,
-        createdAt: date || new Date() // use date if provided, fallback to current date
+        createdAt: date || new Date() 
       });
   
       const saved = await expense.save();
@@ -52,7 +52,7 @@ router.put('/:id', protect, async (req, res) => {
 //  Delete an expense
 router.delete('/:id', protect, async (req, res) => {
   try {
-    console.log('id',req.params.id);
+    //console.log('id',req.params.id);
     const deleted = await Expense.findOneAndDelete({
       _id: req.params.id,
       userId: req.user.id
@@ -69,51 +69,59 @@ router.delete('/:id', protect, async (req, res) => {
 
 // filtering by category and date
 router.get('/', protect, async (req, res) => {
-    try {
-      const { category, startDate, endDate } = req.query;
-  
-      // Build the filter object with userId from authenticated user
-      let filter = { userId: req.user.id };
-  
-      // Filter by category if provided
-      if (category) {
-        filter.category = category;
-      }
-  
-      // Filter by date range if provided
-      if (startDate || endDate) {
-        filter.createdAt = {};
-        
-        if (startDate) {
-          const start = new Date(startDate);
-          start.setHours(0, 0, 0, 0); // Start of the day
-          filter.createdAt.$gte = start;
-          console.log("Start Date:", start); // Log the start date
-        }
-  
-        if (endDate) {
-          const end = new Date(endDate);
-          end.setHours(23, 59, 59, 999); // End of the day
-          filter.createdAt.$lte = end;
-          console.log("End Date:", end); // Log the end date
-        }
-      }
-  
-      
-  
-      // Find expenses that match the filter
-      const expenses = await Expense.find(filter);
-  
-      if (expenses.length === 0) {
-        return res.json({ error: 'No expenses found' });
-      }
-  
-      res.json(expenses);
-    } catch (err) {
-      console.error(err); // Log error for debugging
-      res.status(500).json({ error: 'Failed to fetch expenses' });
+  try {
+    const { category, startDate, endDate, sortBy, order } = req.query;
+
+    // Build the filter object with userId from authenticated user
+    let filter = { userId: req.user.id };
+
+    // Filter by category if provided
+    if (category) {
+      filter.category = category;
     }
-  });
+
+    // Filter by date range if provided
+    if (startDate || endDate) {
+      filter.createdAt = {};
+
+      if (startDate) {
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0); // Start of the day
+        filter.createdAt.$gte = start;
+        console.log("Start Date:", start); // Log the start date
+      }
+
+      if (endDate) {
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999); // End of the day
+        filter.createdAt.$lte = end;
+        console.log("End Date:", end); // Log the end date
+      }
+    }
+
+    // Determine the sorting field and order (default is ascending by amount)
+    let sort = {};
+    if (sortBy) {
+      sort[sortBy] = order === 'desc' ? -1 : 1; // Ascending: 1, Descending: -1
+    } else {
+      // Default sorting: sort by createdAt in descending order
+      sort.createdAt = -1; 
+    }
+
+    // Find and sort expenses that match the filter
+    const expenses = await Expense.find(filter).sort(sort);
+
+    if (expenses.length === 0) {
+      return res.json({ error: 'No expenses found' });
+    }
+
+    res.json(expenses);
+  } catch (err) {
+    console.error(err); // Log error for debugging
+    res.status(500).json({ error: 'Failed to fetch expenses' });
+  }
+});
+
 
    // try {
 //       const { month, year } = req.query;
@@ -232,6 +240,52 @@ router.get('/monthlySummary', protect, async (req, res) => {
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Failed to fetch monthly summary' });
+    }
+  });
+
+  router.get('/getCatExpense',protect,async(req, res)=>{
+    const {startDate, endDate} = req.query;
+
+    let filter = {};
+
+    if(startDate || endDate){
+      filter.createdAt = {}
+
+    }else{
+      res.status(400).json('invalid date');
+    }
+    // const utcStartDate = new Date(Date.UTC(startDate,0,0,0,0));
+    // const utcEndDate = new Date(Date.UTC(endDate,23,59,59,999));
+    if(startDate){
+      const start = new Date(startDate);
+      start.setHours(0,0,0,0);
+      filter.createdAt.$gte = start;
+    }
+    if(endDate){
+      const end = new Date(endDate);
+      end.setHours(23,59,59,999);
+      filter.createdAt.$lte = end;
+    }
+
+    filter.userId = req.user.id;
+
+    try {
+      const result = await Expense.aggregate([
+        {
+          $match: filter
+        },
+        {
+          $group:{
+            _id: "$category",
+            totalAmount:{$sum: "$amount"}
+          }
+        }
+      ]);
+      res.json(result);
+      //console.log("result",result);
+    } catch (error) {
+      res.status(500).json('error in aggregation');
+      console.log(error);
     }
   });
   

@@ -12,7 +12,7 @@ function MonthDropdown() {
   const [selectedYear, setSelectedYear] = useState(currentYear.toString());
   const [totalExpense, setTotalExpense] = useState(null);
   const [message, setMessage] = useState(null);
-  const { expenses} = useSelector((state) => state.expenses);
+  const { expenses,currency} = useSelector((state) => state.expenses);
 
 
   const token = localStorage.getItem("token");
@@ -29,14 +29,14 @@ function MonthDropdown() {
   }, [selectedMonth, selectedYear, token, expenses]);
 
   return (
-    <div className="w-full max-w-md p-6 bg-white shadow-md rounded-md text-center">
+    <div className="w-full max-w-md p-6 bg-white shadow-md rounded-md text-center dark:bg-gray-900 dark:text-white">
       <div className="text-sm font-semibold mb-2">Monthly Expense</div>
       
       <div className="flex flex-col mb-4">
         <label htmlFor="month" className="text-xs font-medium mb-1">Month</label>
         <select
           id="month"
-          className="p-2 border rounded-md text-sm mb-2"
+          className="p-2 border rounded-md text-sm mb-2 dark:bg-purple-900 dark:text-white"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
@@ -55,14 +55,15 @@ function MonthDropdown() {
           type="number"
           value={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
-          className="p-2 border rounded-md text-sm"
+          className="p-2 border rounded-md text-sm dark:bg-purple-900 dark:text-white"
         />
       </div>
 
       <div className="p-2 flex justify-center items-center gap-2">
         <FaMoneyCheckAlt size={20}/>
         <div>
-          {totalExpense >= 0 ? `${totalExpense} LKR` : "Loading..."}
+          {totalExpense >= 0 ? <div>{totalExpense} 
+          <span className="border rounded-md px-2 py-1 text-xs dark:text-white text-white ml-2 dark:bg-cyan-800 bg-cyan-950"> {'USD'}</span></div> : "Loading..."}
         </div>
       </div>
 
