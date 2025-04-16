@@ -1,5 +1,13 @@
 # 📊 Expense Tracker App
 
+## 📸 Screenshots
+
+![Dashboard Screenshot](https://i.ibb.co/k6W9bvCj/app-dash-2.png)
+![Mobile View or Second Screenshot](https://i.ibb.co/GQnBWLFK/image.png)
+
+---
+
+
 A full-stack MERN application to track daily, monthly, and categorized expenses. The app supports currency conversion, filtering, authentication, and detailed analytics with a modern UI.
 
 ---
@@ -89,12 +97,6 @@ npm run dev
 ```
 
 
-## 📸 Screenshots
-
-![Dashboard Screenshot](https://i.ibb.co/k6W9bvCj/app-dash-2.png)
-![Mobile View or Second Screenshot](https://i.ibb.co/GQnBWLFK/image.png)
-
----
 
 ---
 
